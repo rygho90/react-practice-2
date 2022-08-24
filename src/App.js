@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Overview from "./components/Overview";
+import uniqid from "uniqid";
 
 class App extends Component {
   constructor() {
@@ -22,7 +23,12 @@ class App extends Component {
   handleSubmit(e) {
     e.preventDefault();
     console.log(this.state.text);
-    this.setState({ tasks: [...this.state.tasks, this.state.text] });
+
+    const newTask = {
+      text: this.state.text,
+      key: uniqid()
+    }
+    this.setState({ tasks: [...this.state.tasks, newTask] });
     this.setState({ text: "" });
   }
 
@@ -46,7 +52,7 @@ class App extends Component {
           <input type="submit" value="Submit" />
         </form>
         <button onClick={this.logStuff}>Log Test</button>
-        <Overview tasks={this.state.tasks}/>
+        <Overview tasks={this.state.tasks} />
       </div>
     );
   }

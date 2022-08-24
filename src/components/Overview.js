@@ -7,7 +7,7 @@ class Overview extends Component {
 
   render() {
     const { tasks } = this.props;
-    const listItems = tasks.map((task) => <li>{task}</li>);
+    const listItems = tasks.map((task) => <li key={task.key}>{task.text}</li>);
 
     return (
       <div>
