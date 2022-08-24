@@ -6,8 +6,17 @@ class Overview extends Component {
   }
 
   render() {
-    const { tasks } = this.props;
-    const listItems = tasks.map((task) => <li key={task.key}>{task.text}</li>);
+    const { tasks, amount } = this.props;
+    let currNum = amount - amount;
+    const listItems = tasks.map((task) => {
+      currNum += 1;
+      return (
+        <li key={task.key}>
+          {currNum}.&nbsp;
+          {task.text}
+        </li>
+      );
+    });
 
     return (
       <div>
