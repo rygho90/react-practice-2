@@ -37,6 +37,8 @@ class App extends Component {
   }
 
   render() {
+    const { text, tasks } = this.state;
+
     return (
       <div>
         <h1>HELLO</h1>
@@ -45,14 +47,14 @@ class App extends Component {
             Add New Task:
             <input
               type="text"
-              value={this.state.text}
+              value={text}
               onChange={this.handleChange}
             />
           </label>
           <input type="submit" value="Submit" />
         </form>
         <button onClick={this.logStuff}>Log Test</button>
-        <Overview tasks={this.state.tasks} />
+        <Overview tasks={tasks} />
       </div>
     );
   }
