@@ -15,6 +15,7 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.logStuff = this.logStuff.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleChange(e) {
@@ -37,6 +38,10 @@ class App extends Component {
     console.log(this.state.tasks);
   }
 
+  handleDelete(e) {
+    console.log(e.target.parentNode);
+  }
+
   render() {
     const { text, tasks, amount } = this.state;
 
@@ -51,7 +56,7 @@ class App extends Component {
           <input type="submit" value="Submit" />
         </form>
         <button onClick={this.logStuff}>Log Test</button>
-        <Overview tasks={tasks} amount={amount}/>
+        <Overview tasks={tasks} amount={amount} handleDelete={this.handleDelete} />
       </div>
     );
   }

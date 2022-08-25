@@ -6,7 +6,7 @@ class Overview extends Component {
   }
 
   render() {
-    const { tasks, amount } = this.props;
+    const { tasks, amount, handleDelete } = this.props;
     let currNum = amount - amount;
     const listItems = tasks.map((task) => {
       currNum += 1;
@@ -14,6 +14,7 @@ class Overview extends Component {
         <li key={task.key}>
           {currNum}.&nbsp;
           {task.text}
+          <button onClick={handleDelete}>DELETE</button>
         </li>
       );
     });
