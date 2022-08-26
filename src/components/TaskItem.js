@@ -7,15 +7,16 @@ class TaskItem extends Component {
   }
 
   logTask() {
-    this.props.handleDelete(this.props.text);
+    this.props.handleDelete(this.props.taskID);
   }
 
   render() {
-    const { text } = this.props;
+    const { taskID, text } = this.props;
 
     return (
       <li>
         <div>{text}</div>
+        <div>{taskID}</div>
         <button onClick={this.logTask}>DELETE</button>
       </li>
     );

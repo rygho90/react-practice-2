@@ -36,8 +36,11 @@ class App extends Component {
     console.log(this.state.tasks);
   }
 
-  handleDelete(task) {
-    console.log(task);
+  handleDelete(taskID) {
+    console.log(taskID);
+
+    let newTasks = this.state.tasks.filter(task => task.key !== taskID)
+    this.setState({ tasks: newTasks})
   }
 
   render() {

@@ -13,7 +13,7 @@ class Overview extends Component {
       <div>
         <ol>
         {tasks.map(task => {
-          return <TaskItem key={task.key} text={task.text} handleDelete={handleDelete}/>
+          return <TaskItem key={task.key} taskID={task.key} text={task.text} handleDelete={handleDelete}/>
         })}
         </ol>
         
