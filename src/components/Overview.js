@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import TaskItem from "./TaskItem";
 
 class Overview extends Component {
   constructor(props) {
@@ -6,22 +7,16 @@ class Overview extends Component {
   }
 
   render() {
-    const { tasks, amount, handleDelete } = this.props;
-    let currNum = amount - amount;
-    const listItems = tasks.map((task) => {
-      currNum += 1;
-      return (
-        <li key={task.key}>
-          {currNum}.&nbsp;
-          {task.text}
-          <button onClick={handleDelete}>DELETE</button>
-        </li>
-      );
-    });
+    const { tasks, handleDelete } = this.props;
 
     return (
       <div>
-        <ul>{listItems}</ul>
+        <ol>
+        {tasks.map(task => {
+          return <TaskItem key={task.key} text={task.text} handleDelete={handleDelete}/>
+        })}
+        </ol>
+        
       </div>
     );
   }

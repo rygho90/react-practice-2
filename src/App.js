@@ -9,7 +9,6 @@ class App extends Component {
     this.state = {
       text: "",
       tasks: [],
-      amount: 0,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -30,7 +29,6 @@ class App extends Component {
       key: uniqid(),
     };
     this.setState({ tasks: [...this.state.tasks, newTask] });
-    this.setState({ amount: this.state.amount + 1 });
     this.setState({ text: "" });
   }
 
@@ -38,12 +36,12 @@ class App extends Component {
     console.log(this.state.tasks);
   }
 
-  handleDelete(e) {
-    console.log(e.target.parentNode);
+  handleDelete(task) {
+    console.log(task);
   }
 
   render() {
-    const { text, tasks, amount } = this.state;
+    const { text, tasks } = this.state;
 
     return (
       <div>
@@ -56,7 +54,7 @@ class App extends Component {
           <input type="submit" value="Submit" />
         </form>
         <button onClick={this.logStuff}>Log Test</button>
-        <Overview tasks={tasks} amount={amount} handleDelete={this.handleDelete} />
+        <Overview tasks={tasks} handleDelete={this.handleDelete} />
       </div>
     );
   }
