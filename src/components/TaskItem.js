@@ -5,15 +5,28 @@ class TaskItem extends Component {
     super(props);
     this.deleteTask = this.deleteTask.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
-    this.state = {isEditing: false}
+    this.onEditChange = this.onEditChange.bind(this);
+    this.editTask = this.editTask.bind(this);
+    this.state = { isEditing: false, taskText: this.props.text };
   }
 
   deleteTask() {
     this.props.handleDelete(this.props.taskID);
   }
 
+  editTask() {
+    this.props.handleEdit(this.props.taskID, this.state.taskText);
+    this.setState({ isEditing: false });
+  }
+
   toggleEdit() {
-    this.setState({isEditing: true})
+    this.setState({ isEditing: true });
+    console.log(this.props);
+    console.log(this.state);
+  }
+
+  onEditChange(e) {
+    this.setState({ taskText: e.target.value });
   }
 
   render() {
@@ -23,11 +36,17 @@ class TaskItem extends Component {
     let changeButton;
 
     if (isEditing) {
-        textField = <input type="text" value={text} />
-        changeButton = <button onClick={this.toggleEdit}>RESUBMIT</button>
+      textField = (
+        <input
+          type="text"
+          value={this.state.taskText}
+          onChange={this.onEditChange}
+        />
+      );
+      changeButton = <button onClick={this.editTask}>RESUBMIT</button>;
     } else {
-        textField = <div>{text}</div>
-        changeButton = <button onClick={this.toggleEdit}>EDIT</button>
+      textField = <div>{text}</div>;
+      changeButton = <button onClick={this.toggleEdit}>EDIT</button>;
     }
 
     return (

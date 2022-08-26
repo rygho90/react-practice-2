@@ -7,16 +7,23 @@ class Overview extends Component {
   }
 
   render() {
-    const { tasks, handleDelete } = this.props;
+    const { tasks, handleDelete, handleEdit } = this.props;
 
     return (
       <div>
         <ol>
-        {tasks.map(task => {
-          return <TaskItem key={task.key} taskID={task.key} text={task.text} handleDelete={handleDelete}/>
-        })}
+          {tasks.map((task) => {
+            return (
+              <TaskItem
+                key={task.key}
+                taskID={task.key}
+                text={task.text}
+                handleDelete={handleDelete}
+                handleEdit={handleEdit}
+              />
+            );
+          })}
         </ol>
-        
       </div>
     );
   }

@@ -15,6 +15,7 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.logStuff = this.logStuff.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
   }
 
   handleChange(e) {
@@ -39,8 +40,16 @@ class App extends Component {
   handleDelete(taskID) {
     console.log(taskID);
 
-    let newTasks = this.state.tasks.filter(task => task.key !== taskID)
-    this.setState({ tasks: newTasks})
+    let newTasks = this.state.tasks.filter((task) => task.key !== taskID);
+    this.setState({ tasks: newTasks });
+  }
+
+  handleEdit(taskID, newText) {
+    let newTasks = this.state.tasks;
+    newTasks.forEach(task => {
+      if (task.key === taskID) task.text = newText
+    })
+    this.setState({ tasks: newTasks });
   }
 
   render() {
@@ -57,7 +66,11 @@ class App extends Component {
           <input type="submit" value="Submit" />
         </form>
         <button onClick={this.logStuff}>Log Test</button>
-        <Overview tasks={tasks} handleDelete={this.handleDelete} />
+        <Overview
+          tasks={tasks}
+          handleDelete={this.handleDelete}
+          handleEdit={this.handleEdit}
+        />
       </div>
     );
   }
